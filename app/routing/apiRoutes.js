@@ -35,7 +35,7 @@ module.exports = function (app) {
 
         var newFriend = req.body
         friends.push(newFriend)
-        res.json(newFriend)
+        // res.json(newFriend)
         console.log(newFriend)
 
         console.log("Number of friends:" + friends.length)
@@ -65,7 +65,7 @@ module.exports = function (app) {
             }
         }
         console.log(friendMatchArray)
-
+        res.json(friendMatchArray)
     });
 
 };
