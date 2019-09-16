@@ -35,9 +35,7 @@ module.exports = function (app) {
 
         var newFriend = req.body
         friends.push(newFriend)
-        // res.json(newFriend)
-        console.log(newFriend)
-
+     
         console.log("Number of friends:" + friends.length)
 
         var scoreArray = []
@@ -54,15 +52,27 @@ module.exports = function (app) {
         var minScore
         var indexLocation
         var friendMatchArray = []
+        var minArrayIndex=[]
         console.log(scoreArray)
+        // get the minimum score in the array 
         minScore = Math.min.apply(null, scoreArray)
-        indexLocation = scoreArray.indexOf(minScore)
-        console.log("minimum score: " + minScore + " Index location: " + indexLocation)
-        for (var k = 0; k < friends.length - 1; k++) {
-            if (friends[k].indexPosition === indexLocation) {
-                friendMatchArray.push(friends[k])
-                
+        // indexLocation = scoreArray.indexOf(minScore)
+        // check if there are multiple instances of minimum score
+        
+        for (var x=0;x<scoreArray.length;x++){
+            if (scoreArray[x]===minScore){
+                minArrayIndex.push(x)
             }
+        }
+        console.log(minArrayIndex)
+        // minArrayIndex stores the index location of the friends matches in the API
+        for (var z=0;z<minArrayIndex.length;z++){
+            for (var k = 0; k < friends.length - 1; k++) {
+                if (friends[k].indexPosition === minArrayIndex[z]) {
+                    friendMatchArray.push(friends[k])  
+                }
+            }
+
         }
         console.log(friendMatchArray)
         res.json(friendMatchArray)

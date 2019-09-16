@@ -175,11 +175,12 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h2 class="modal-title"><strong>Best Match</strong></h2>
                 </div>
-                <div class="modal-body">
-                    <h2 id="match-name"></h2>
-                    <img id="match-img"
-                        src="" alt="">
+
+                <div class="modal-body" id="modalMatch">
+                    
+
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
@@ -232,7 +233,7 @@
                 var userData = {
                     indexPosition: "",
                     name: $("#name").val(),
-                    photo: $("#photo").val(),
+                    image: $("#photo").val(),
                     score: [
                         $("#q1").val(),
                         $("#q2").val(),
@@ -252,16 +253,44 @@
                 // AJAX post the data to the friends API.
                 $.post("/api/friends", userData, function (data) {
 
-                    
+
                     alert("posting to API")
 
                     // Grab the result from the AJAX post so that the best match's name and photo are displayed.
-                    $("#match-name").text(data[0].name);
-                    // $("#match-img").attr("src", data.photo);
-
-                    // Show the modal with the best match
-                    $("#results-modal").modal("toggle");
+                   
+                    $("#modalMatch").html("")
+                   
                     console.log(data)
+
+                    for (var i = 0; i < data.length; i++) {
+
+                        var ulListModal = $("<ul>")
+                        ulListModal.addClass("list-unstyled")
+
+                        var liListModal = $("<li>")
+                        liListModal.addClass("media")
+
+                        var imgModal = $("<img>")
+                        imgModal.addClass("mr-3")
+                        imgModal.attr("src", data[i].image)
+
+                        var divModal = $("<div>")
+                        divModal.addClass("media-body")
+                        divModal.html(data[i].name)
+
+                        var headerModal = $("<h5>")
+                        headerModal.addClass("mt-0 mb-1")
+                        headerModal.html("Match# " + i + parseInt(1))
+
+                        liListModal.append(imgModal)
+                        liListModal.append(divModal)
+                        liListModal.append(headerModal)
+
+                        ulListModal.append(liListModal)
+                        $("#modalMatch").append(ulListModal)    
+                    }
+                     // Show the modal with the best match
+                     $("#results-modal").modal("toggle");
 
                 });
             } else {
