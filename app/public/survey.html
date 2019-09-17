@@ -158,8 +158,8 @@
         <hr>
         <footer class="footer">
             <div class="container">
-                <p><a href="/api/friends">API Friends List</a> | <a
-                        href="https://github.com/afhaque/friendfinder">GitHub Repo</a></p>
+                <p><a href="/api/friends" target="_blank">API Friends List</a> | <a
+                        href="https://github.com/anw1986/FriendFinder" href="_blank">GitHub Repo</a></p>
             </div>
         </footer>
 
@@ -177,7 +177,9 @@
                 </div>
 
                 <div class="modal-body" id="modalMatch">
-                    
+                    <ul class="list-unstyled" id="friendList">
+
+                    </ul>
 
                 </div>
 
@@ -257,40 +259,46 @@
                     alert("posting to API")
 
                     // Grab the result from the AJAX post so that the best match's name and photo are displayed.
-                   
-                    $("#modalMatch").html("")
-                   
+
+                    $("#friendList").html("")
+
                     console.log(data)
 
                     for (var i = 0; i < data.length; i++) {
-
-                        var ulListModal = $("<ul>")
-                        ulListModal.addClass("list-unstyled")
 
                         var liListModal = $("<li>")
                         liListModal.addClass("media")
 
                         var imgModal = $("<img>")
-                        imgModal.addClass("mr-3 img-fluid")
+                        imgModal.addClass("mr-3 mb-3")
                         imgModal.attr("src", data[i].image)
+                        imgModal.css({
+                            width:"100px",
+                            height: "100px"
+                        })
 
                         var divModal = $("<div>")
                         divModal.addClass("media-body")
-                        divModal.html(data[i].name)
+
+
+                        var divText = $("<p>")
+                        divText.html(data[i].name)
 
                         var headerModal = $("<h5>")
                         headerModal.addClass("mt-0 mb-1")
-                        headerModal.html("Match# " + i + parseInt(1))
+                        headerModal.html("Match# " + (i + 1))
 
+
+                        divModal.append(headerModal)
+                        divModal.append(divText)
                         liListModal.append(imgModal)
                         liListModal.append(divModal)
-                        liListModal.append(headerModal)
 
-                        ulListModal.append(liListModal)
-                        $("#modalMatch").append(ulListModal)    
+                        $("#friendList").append(liListModal)
+
                     }
-                     // Show the modal with the best match
-                     $("#results-modal").modal("toggle");
+                    // Show the modal with the best match
+                    $("#results-modal").modal("toggle");
 
                 });
             } else {
