@@ -6,11 +6,11 @@ Fill out the survey and find friend(s). A saucy algorithm matches you with frien
 
 The saucy algorithm not just only provides a best match but can provide a list of best matches to choose from. See the below screen shot. 
 
-Single search result
+**Single search result**
 
 ![single result](./public/images/output-1.JPG)
 
-Multiple result
+**Multiple result**
 
 ![multiple result](./public/images/output-2.JPG)
 
