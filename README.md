@@ -8,11 +8,11 @@ The saucy algorithm not just only provides a best match but can provide a list o
 
 Single search result
 
-![single result](./images/output-1.JPG)
+![single result](./public/images/output-1.JPG)
 
 Multiple result
 
-![multiple result](./images/output-2.JPG)
+![multiple result](./public/images/output-2.JPG)
 
 ## NPM Packages
 
