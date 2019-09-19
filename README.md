@@ -1,6 +1,6 @@
 # FriendFinder
 
-Fill out the survey and find friend(s). A saucy algorithm matches you with friend(s) that share common thoughts/interests. 
+Fill out the survey and find friend(s). A saucy algorithm matches you with friend(s) that share common thoughts/interests. Here is the deployed link https://anw-friend-finder.herokuapp.com/
 
 ## Search Result
 
